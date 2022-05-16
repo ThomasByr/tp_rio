@@ -29,7 +29,7 @@ void read_io_args(struct io_args *args, int argc, char **argv) {
             args->get_license = true;
             break;
         default:
-            snprintf(bad, BUFSIZ, "%s", argv[optind - 1]);
+            snprintf_s(bad, BUFSIZ, "%s", argv[optind - 1]);
             get_help(bad);
             panic(0, "unreachable");
             break;
@@ -68,7 +68,6 @@ noreturn void get_help(char *restrict s) {
     fprintf(stdout, "        print version and exit\n");
     fprintf(stdout, "    -l, --license\n");
     fprintf(stdout, "        print license and exit\n");
-
     fflush(stdout);
 
     exit(status);
@@ -76,8 +75,8 @@ noreturn void get_help(char *restrict s) {
 
 noreturn void get_version(void) {
     char v[BUFSIZ] = {0};
-    snprintf(v, BUFSIZ, "%d.%d.%d", __VERSION_MAJOR__, __VERSION_MINOR__,
-             __VERSION_PATCH__);
+    snprintf_s(v, BUFSIZ, "%d.%d.%d", __VERSION_MAJOR__, __VERSION_MINOR__,
+               __VERSION_PATCH__);
 
     fprintf(stdout, "tp_rio\nauthors: %s\n", __AUTHOR__);
     fprintf(stdout, "version: %s\n", v);
@@ -116,5 +115,6 @@ noreturn void get_license(void) {
 
     fprintf(stdout, "license:\n%s", l);
     fflush(stdout);
+
     exit(EXIT_SUCCESS);
 }
