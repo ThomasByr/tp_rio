@@ -16,8 +16,6 @@
 
 **If you ever get this in .7z, .zip, .tar.gz, .rar or whatever archive format, please ensure you do have the latest version by paying a visit to [the home repo](https://github.com/ThomasByr/tp_rio) on GitHub !**
 
-_note_ : doxygen actually can't deal with new markdown GitHub style... please view this page on a proper web editor or even better, on GitHub
-
 1. [✏️ In short](#️-in-short)
 2. [🔰 Prerequisites](#-prerequisites)
 3. [👩‍🏫 Usage](#-usage)
