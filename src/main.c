@@ -1,6 +1,6 @@
 //! tp-rio
 //!
-//! Copyright (c) 2022, ThomasByr.
+//! Copyright (c) 2022, ThomasByr x LosKeeper.
 //! All rights reserved.
 //!
 //! Redistribution and use in source and binary forms, with or without
@@ -31,6 +31,7 @@
 //!
 //! @file src/main.cpp
 //! @author ThomasByr <https://github.com/ThomasByr>
+//! @author LosKeeper <https://github.com/LosKeeper>
 //! @brief Main entry point for this project executable.
 //!
 //! @see <https://github.com/ThomasByr/tp_rio>
