@@ -1,6 +1,6 @@
 //! tp-rio
 //!
-//! Copyright (c) 2022, ThomasByr x LosKeeper.
+//! Copyright (c) 2022, ThomasByr x ThomasD.
 //! All rights reserved.
 //!
 //! Redistribution and use in source and binary forms, with or without
@@ -31,17 +31,20 @@
 //!
 //! @file src/main.c
 //! @author ThomasByr <https://github.com/ThomasByr>
-//! @author LosKeeper <https://github.com/LosKeeper>
+//! @author ThomasD <https://github.com/LosKeeper>
 //! @brief Main entry point for this project executable.
 //!
 //! @see <https://github.com/ThomasByr/tp_rio>
 //!
+
+#include "lib.h"
 
 #include "io.h"
 
 int main(int argc, char *argv[]) {
     struct io_args args;
     io_args_init(&args);
+
     read_io_args(&args, argc, argv);
     check_io_args(&args);
 
