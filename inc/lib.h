@@ -102,3 +102,12 @@ void debug(int first, const char *restrict fmt, ...);
  * @param fmt formated message to print
  */
 void info(int first, const char *restrict fmt, ...);
+
+/**
+ * @brief safe call to snprintf.
+ *
+ * @param str string to write to
+ * @param size size of the string
+ * @param fmt formated message to print
+ */
+void snprintf_s(char *restrict str, size_t size, const char *restrict fmt, ...);
