@@ -51,3 +51,20 @@ void info(int first, const char *restrict fmt, ...) {
         panic(1, "fflush failure");
     }
 }
+
+void snprintf_s(char *restrict str, size_t size, const char *restrict fmt,
+                ...) {
+    int n;
+    va_list ap;
+
+    va_start(ap, fmt);
+    n = vsnprintf(str, size, fmt, ap);
+    va_end(ap);
+
+    if (n < 0) {
+        panic(1, "vsnprintf failure");
+    }
+    if ((size_t)n >= size) {
+        panic(1, "format string too long");
+    }
+}
