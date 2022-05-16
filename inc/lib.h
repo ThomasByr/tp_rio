@@ -41,7 +41,7 @@
             panic(1, #op); \
     } while (0)
 
-#define TCHK(op)                \
+#define T_CHK(op)               \
     do {                        \
         if ((errno = (op)) > 0) \
             panic(1, #op);      \
