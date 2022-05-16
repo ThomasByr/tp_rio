@@ -1,8 +1,8 @@
 # TP RIO
 
 [![Linux](https://svgshare.com/i/Zhy.svg)](https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps)
-[![GitHub license](https://img.shields.io/github/license/ThomasByr/tp_rio)](https://github.com/ThomasByr/chess/blob/master/LICENSE)
-[![GitHub commits](https://badgen.net/github/commits/ThomasByr/tp_rio)](https://GitHub.com/ThomasByr/chess/commit/)
+[![GitHub license](https://img.shields.io/github/license/ThomasByr/tp_rio)](https://github.com/ThomasByr/tp_rio/blob/master/LICENSE)
+[![GitHub commits](https://badgen.net/github/commits/ThomasByr/tp_rio)](https://GitHub.com/ThomasByr/tp_rio/commit/)
 [![GitHub latest commit](https://badgen.net/github/last-commit/ThomasByr/tp_rio)](https://gitHub.com/ThomasByr/tp_rio/commit/)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ThomasByr/tp_rio/graphs/commit-activity)
 
