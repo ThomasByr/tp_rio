@@ -8,7 +8,7 @@
 
 [![GitHub version](https://badge.fury.io/gh/ThomasByr%2Ftp_rio.svg)](https://github.com/ThomasByr/tp_rio)
 [![Author](https://img.shields.io/badge/author-@ThomasByr-blue)](https://github.com/ThomasByr)
-[![Author](https://img.shields.io/badge/author-@LosKeeper-blue)](https://github.com/ThomasByr)
+[![Author](https://img.shields.io/badge/author-@LosKeeper-blue)](https://github.com/LosKeeper)
 
 <summary>School project</summary>
 
