@@ -5,6 +5,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <fnmatch.h>
+#include <getopt.h>
 #include <limits.h>
 #include <linux/fb.h>
 #include <linux/kd.h>
@@ -14,6 +15,7 @@
 #include <semaphore.h>
 #include <signal.h>
 #include <stdarg.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -35,6 +37,12 @@
 #include <unistd.h>
 #include <wait.h>
 #include <wchar.h>
+
+#define __AUTHOR__ "ThomasByr x ThomasD"
+
+#define __VERSION_MAJOR__ 0
+#define __VERSION_MINOR__ 1
+#define __VERSION_PATCH__ 0
 
 #define CHK(op)            \
     do {                   \
@@ -78,3 +86,19 @@
  * @note this function never returns
  */
 noreturn void panic(int syserr, const char *restrict fmt, ...);
+
+/**
+ * @brief print a message at the debug level.
+ *
+ * @param first 1 if the first message of a series, 0 otherwise
+ * @param fmt formated message to print
+ */
+void debug(int first, const char *restrict fmt, ...);
+
+/**
+ * @brief print a message.
+ *
+ * @param first 1 if the first message of a series, 0 otherwise
+ * @param fmt formated message to print
+ */
+void info(int first, const char *restrict fmt, ...);
