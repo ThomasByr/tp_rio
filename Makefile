@@ -18,7 +18,7 @@ OBJECTS     := $(SOURCES:$(SRCDIR)/%.$(FILEXT)=$(OBJDIR)/%.o)
 
 PATH_TO_EXE  = $(BINDIR)/$(TARGET)
 
-all : release
+all : debug
 
 debug: CFLAGS += -Og -DDEBUG -g -ggdb
 debug: $(PATH_TO_EXE)
