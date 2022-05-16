@@ -1,5 +1,9 @@
 #include "lib.h"
 
+/**
+ * @brief struct to hold command line arguments.
+ *
+ */
 struct io_args {
     bool get_help;    // -h, --help
     bool get_version; // -v, --version
