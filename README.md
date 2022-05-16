@@ -30,6 +30,18 @@ _note_ : doxygen actually can't deal with new markdown GitHub style... please vi
 
 ## 🔰 Prerequisites
 
+This project currently suppose you do run a recent enough version of Linux with `pthread` up and ready.
+
+Here you can find the code standard used during dev. The compatibility version corresponds to the minimum version in which the program is guaranteed (the real min version could be much lower) to perform as originally intended regarding the terms and conditions mentioned in [LICENSE](LICENSE) and the [main](src/main.c) source file.
+
+| dev version used  | compatibility version |
+| ----------------- | --------------------- |
+| gcc-11            | gcc-9                 |
+| -std=gnu17        | -std=gnu11            |
+| linux kernel 5.15 | linux kernel 5.13     |
+| valgrind-3.18.1   | valgrind-3.15.0       |
+| python 3.10.4     | python 3.9.12         |
+
 ## 👩‍🏫 Usage
 
 ## ⚖️ License
