@@ -87,7 +87,7 @@ noreturn void get_version(void) {
 }
 
 noreturn void get_license(void) {
-    static const char *l =
+    static const char l[] =
         "This project is licensed under the [GPL-3.0](LICENSE) license. "
         "Please see the [license](LICENSE) file for more "
         "details.\n\nRedistribution and use in source and binary forms, with "
