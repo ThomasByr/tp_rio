@@ -42,6 +42,14 @@ Here you can find the code standard used during dev. The compatibility version c
 
 ## 👩‍🏫 Usage
 
+Compile and run a release version with
+
+```bash
+make run-release
+```
+
+Alternatively `make release` will produce a release version of the executable, `make debug` a debug one, `make run-release` will compile and then run a release version, `make run-debug` will compile and run a debug version with valgrind, and finally `make` is a binding for building the debug version. You can run an existing executable with `make run`, and clean with `make clean`.
+
 ## ⚖️ License
 
 This project is licensed under the [GPL-3.0](LICENSE) license. Please see the [license](LICENSE) file for more details.
