@@ -29,7 +29,7 @@
 //! ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //! POSSIBILITY OF SUCH DAMAGE.
 //!
-//! @file src/main.cpp
+//! @file src/main.c
 //! @author ThomasByr <https://github.com/ThomasByr>
 //! @author LosKeeper <https://github.com/LosKeeper>
 //! @brief Main entry point for this project executable.
@@ -37,11 +37,13 @@
 //! @see <https://github.com/ThomasByr/tp_rio>
 //!
 
-#include "lib.h"
+#include "io.h"
 
 int main(int argc, char *argv[]) {
-    (void)argc;
-    (void)argv;
+    struct io_args args;
+    io_args_init(&args);
+    read_io_args(&args, argc, argv);
+    check_io_args(&args);
 
     return EXIT_SUCCESS;
 }
