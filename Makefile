@@ -5,7 +5,7 @@ LDLIBS = -pthread
 
 INCLUDE_PATH = ./inc
 
-TARGET       = main
+TARGET       = tp_rio
 FILEXT       = c
 
 SRCDIR       = src
@@ -35,10 +35,10 @@ else
 	@echo "\033[91mNo executable found!\033[0m"
 endif
 
-run-release: release
+run-release: clean release
 	./$(PATH_TO_EXE)
 
-run-debug: debug
+run-debug: clean debug
 	valgrind --leak-check=full --show-leak-kinds=all --vgdb=full -s ./$(PATH_TO_EXE)
 
 $(PATH_TO_EXE): $(OBJECTS)
