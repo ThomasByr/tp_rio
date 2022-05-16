@@ -34,6 +34,7 @@
 #include <time.h>
 #include <unistd.h>
 #include <wait.h>
+#include <wchar.h>
 
 #define CHK(op)            \
     do {                   \
