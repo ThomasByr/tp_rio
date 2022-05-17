@@ -2,6 +2,7 @@
 
 int receiver_tcp(int port) {
     int sockfd;             // descripteur de socket
+    int sockfd_client;      // descripteur de socket client
     char buf[BUFLEN] = {0}; // espace necessaire pour stocker le message recu
 
     // taille d'une structure sockaddr_in utile pour la fonction recvfrom
@@ -41,13 +42,14 @@ int receiver_tcp(int port) {
     }
 
     // acceptation de la connexion
-    if ((sockfd = accept(sockfd, (struct sockaddr *)&client, &fromlen)) == -1) {
+    if ((sockfd_client =
+             accept(sockfd, (struct sockaddr *)&client, &fromlen)) == -1) {
         perror("erreur de reception -> ");
         exit(-3);
     }
 
     // reception de la chaine de caracteres
-    if (recv(sockfd, buf, BUFLEN, 0) == -1) {
+    if (recv(sockfd_client, buf, BUFLEN, 0) == -1) {
         perror("erreur de reception -> ");
         exit(-3);
     }
@@ -56,7 +58,8 @@ int receiver_tcp(int port) {
     info(1, "Received: %s\n", buf);
 
     // fermeture de la socket
-    close(sockfd);
+    CHK(close(sockfd));
+    CHK(close(sockfd_client));
 
     return 0;
 }

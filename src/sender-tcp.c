@@ -25,6 +25,12 @@ int sender_tcp(char *target, int port, const char *msg) {
         exit(-2);
     }
 
+    // envoi de la chaine
+    if (send(sockfd, msg, strlen(msg), 0) == -1) {
+        perror("erreur a l'appel de la fonction send -> ");
+        exit(-3);
+    }
+
     debug(1, "Sent msg: %s\n", msg);
     debug(0, "\t-> to %s:%d\n", target, port);
 
