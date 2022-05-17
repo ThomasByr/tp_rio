@@ -1,45 +1,40 @@
 #include "sender-tcp.h"
 
 int sender_tcp(char *target, int port, const char *msg) {
-    int sockfd;              // descripteur de socket
-    struct sockaddr_in dest; // structure d'adresse qui contiendra les
-                             // parametres reseaux du destinataire
+    int sockfd;              //     socket file descriptor
+    struct sockaddr_in dest; //    address structure of the target
 
-    // creation de la socket
+    // socket init
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
-    // initialisation de la structure d'adresse du destinataire :
-
-    // famille d'adresse
+    // address family
     dest.sin_family = AF_INET;
 
-    // adresse IPv4 du destinataire
+    // IPv4 dest address
     inet_aton(target, &(dest.sin_addr));
 
-    // port du destinataire
+    // dest port
     dest.sin_port = htons(port);
 
     debug(1, "Connecting to %s:%d", target, port);
 
-    // envoi de la chaine
+    // connection
     if (connect(sockfd, (struct sockaddr *)&dest, sizeof(dest)) == -1) {
-        perror("erreur a l'appel de la fonction connect -> ");
-        exit(-2);
+        panic(1, "connect failure");
     }
 
     debug(1, "Connected to %s:%d", target, port);
 
-    // envoi de la chaine
+    // send msg
     if (send(sockfd, msg, strlen(msg), 0) == -1) {
-        perror("erreur a l'appel de la fonction send -> ");
-        exit(-3);
+        panic(1, "send failure");
     }
 
     debug(1, "Sent msg: %s\n", msg);
     debug(0, "\t-> to %s:%d\n", target, port);
 
-    // fermeture de la socket
+    // closing socket
     close(sockfd);
 
-    return 0;
+    return EXIT_SUCCESS;
 }

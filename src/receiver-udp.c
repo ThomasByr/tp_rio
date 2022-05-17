@@ -1,51 +1,45 @@
 #include "receiver-udp.h"
 
 int receiver_udp(int port) {
-    int sockfd;             // descripteur de socket
-    char buf[BUFLEN] = {0}; // espace necessaire pour stocker le message recu
+    int sockfd;             // socket file descriptor
+    char buf[BUFLEN] = {0}; // buffer
 
-    // taille d'une structure sockaddr_in utile pour la fonction recvfrom
+    // size of the address structure (used by `recvfrom`)
     socklen_t fromlen = sizeof(struct sockaddr_in);
 
-    struct sockaddr_in my_addr; // structure d'adresse qui contiendra les param
-                                // reseaux du recepteur
-    struct sockaddr_in client;  // structure d'adresse qui contiendra les param
-                                // reseaux de l'expediteur
+    struct sockaddr_in my_addr; // address structure of the receiver
+    struct sockaddr_in client;  // address structure of the sender
 
-    // creation de la socket
+    // socket init
     sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 
-    // initialisation de la structure d'adresse du recepteur (pg local)
-
-    // famille d'adresse
+    // address family
     my_addr.sin_family = AF_INET;
 
-    // recuperation du port du recepteur
+    // port of the receiver
     my_addr.sin_port = htons(port);
 
-    // adresse IPv4 du recepteur
+    // IPv4 address of the receiver
     inet_aton(IP_RECEIVER, &(my_addr.sin_addr));
 
-    // association de la socket et des param reseaux du recepteur
+    // association of the socket and the address structure
     if (bind(sockfd, (struct sockaddr *)&my_addr, sizeof(my_addr)) != 0) {
-        perror("erreur lors de l'appel a bind -> ");
-        exit(-2);
+        panic(1, "bind failure");
     }
 
     debug(1, "Receiver UDP listening on port %d\n", port);
 
-    // reception de la chaine de caracteres
+    // reception of the message
     if (recvfrom(sockfd, buf, BUFLEN, 0, (struct sockaddr *restrict)&client,
                  &fromlen) == -1) {
-        perror("erreur de reception -> ");
-        exit(-3);
+        panic(1, "recvfrom failure");
     }
 
-    // affichage de la chaine de caracteres recue
+    // print
     info(1, "Received: %s\n", buf);
 
-    // fermeture de la socket
+    // closing socket
     close(sockfd);
 
-    return 0;
+    return EXIT_SUCCESS;
 }

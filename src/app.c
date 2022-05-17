@@ -13,6 +13,7 @@ int exe(const struct io_args *args) {
             break;
         }
         break;
+
     case client:
         switch (args->protocol) {
         case udp:
@@ -24,5 +25,6 @@ int exe(const struct io_args *args) {
         }
         break;
     }
+
     return EXIT_FAILURE;
 }
