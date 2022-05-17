@@ -1,8 +1,8 @@
 #include "sender-tcp.h"
 
 int sender_tcp(char *target, int port, const char *msg) {
-    int sockfd;              //     socket file descriptor
-    struct sockaddr_in dest; //    address structure of the target
+    int sockfd;              // socket file descriptor
+    struct sockaddr_in dest; // address structure of the target
 
     // socket init
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
