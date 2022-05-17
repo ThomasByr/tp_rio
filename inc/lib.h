@@ -79,6 +79,7 @@
 #define BG_WHT "\x1b[47m"
 
 #define BUFLEN 1024
+#define IP_RECEIVER "127.0.0.1"
 
 /**
  * @brief panic with a message.

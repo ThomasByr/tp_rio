@@ -24,7 +24,7 @@ int receiver_udp(int port) {
     my_addr.sin_port = htons(port);
 
     // adresse IPv4 du recepteur
-    inet_aton("127.0.0.1", &(my_addr.sin_addr));
+    inet_aton(IP_RECEIVER, &(my_addr.sin_addr));
 
     // association de la socket et des param reseaux du recepteur
     if (bind(sockfd, (struct sockaddr *)&my_addr, sizeof(my_addr)) != 0) {
