@@ -1,8 +1,8 @@
 #include "receiver-udp.h"
 
 int receiver_udp(int port) {
-    int sockfd;       // descripteur de socket
-    char buf[BUFSIZ]; // espace necessaire pour stocker le message recu
+    int sockfd;             // descripteur de socket
+    char buf[BUFLEN] = {0}; // espace necessaire pour stocker le message recu
 
     // taille d'une structure sockaddr_in utile pour la fonction recvfrom
     socklen_t fromlen = sizeof(struct sockaddr_in);
@@ -13,7 +13,7 @@ int receiver_udp(int port) {
                                 // reseaux de l'expediteur
 
     // creation de la socket
-    sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+    sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 
     // initialisation de la structure d'adresse du recepteur (pg local)
 
@@ -24,22 +24,25 @@ int receiver_udp(int port) {
     my_addr.sin_port = htons(port);
 
     // adresse IPv4 du recepteur
-    inet_aton("192.168.0.1", &(my_addr.sin_addr));
+    inet_aton("127.0.0.1", &(my_addr.sin_addr));
 
     // association de la socket et des param reseaux du recepteur
-    if (bind(sockfd, &my_addr.sin_addr, sizeof(my_addr.sin_addr)) != 0) {
+    if (bind(sockfd, (struct sockaddr *)&my_addr, sizeof(my_addr)) != 0) {
         perror("erreur lors de l'appel a bind -> ");
         exit(-2);
     }
 
+    debug(1, "Receiver UDP listening on port %d\n", port);
+
     // reception de la chaine de caracteres
-    if (recvfrom(sockfd, buf, BUFSIZ, 0, &my_addr.sin_addr, &fromlen) == -1) {
+    if (recvfrom(sockfd, buf, BUFLEN, 0, (struct sockaddr *restrict)&client,
+                 &fromlen) == -1) {
         perror("erreur de reception -> ");
         exit(-3);
     }
 
     // affichage de la chaine de caracteres recue
-    printf("Received: %s\n", buf);
+    info(1, "Received: %s\n", buf);
 
     // fermeture de la socket
     close(sockfd);

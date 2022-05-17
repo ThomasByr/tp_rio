@@ -1,4 +1,4 @@
 #pragma once
 #include "lib.h"
 
-int sender_udp(int target, int port, const char *msg);
+int sender_udp(char *target, int port, const char *msg);

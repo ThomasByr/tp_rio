@@ -49,7 +49,7 @@ void read_io_args(struct io_args *args, int argc, char **argv) {
             args->mode = client;
             break;
         case 't':
-            args->target = strtoi(optarg, NULL);
+            args->target = optarg;
             break;
         case 'p':
             args->port = strtoi(optarg, NULL);
