@@ -16,6 +16,23 @@ noreturn void panic(int syserr, const char *restrict fmt, ...) {
     exit(EXIT_FAILURE);
 }
 
+int strtoi(const char *restrict nptr, int (*f)(int)) {
+    char *endptr;
+    int x = strtol(nptr, &endptr, 10);
+
+    if (endptr == nptr || *endptr != '\0') {
+        panic(1, "must be a number");
+    } // if not a number
+    if (errno == ERANGE) {
+        panic(1, "out of range [%ld, %ld]", LONG_MIN, LONG_MAX);
+    } // if out of range of long (might be a problem with implicit cast)
+    if (f != NULL && !f(x)) {
+        panic(0, "non legal value for our program");
+    } // if non legal value for our program
+
+    return x;
+}
+
 void debug(int first, const char *restrict fmt, ...) {
 #ifndef DEBUG
     (void)first;

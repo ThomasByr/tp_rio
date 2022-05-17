@@ -88,6 +88,15 @@
 noreturn void panic(int syserr, const char *restrict fmt, ...);
 
 /**
+ * @brief perform a string to int conversion.
+ *
+ * @param nptr string to convert
+ * @param f function to perform additional checks (should return 0 if not legal)
+ * @return int - the converted value
+ */
+int strtoi(const char *restrict nptr, int (*f)(int));
+
+/**
  * @brief print a message at the debug level.
  *
  * @param first 1 if the first message of a series, 0 otherwise

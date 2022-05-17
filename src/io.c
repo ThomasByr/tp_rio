@@ -14,10 +14,18 @@ void read_io_args(struct io_args *args, int argc, char **argv) {
         {"help", no_argument, NULL, 'h'},
         {"version", no_argument, NULL, 'v'},
         {"license", no_argument, NULL, 'l'},
+        {"udp", no_argument, NULL, 'U'},
+        {"tcp", no_argument, NULL, 'T'},
+        {"server", no_argument, NULL, 's'},
+        {"client", no_argument, NULL, 'c'},
+        {"target", required_argument, NULL, 't'},
+        {"port", required_argument, NULL, 'p'},
+        {"message", required_argument, NULL, 'm'},
         {NULL, 0, NULL, 0},
     };
 
-    while ((opt = getopt_long(argc, argv, "hvl", long_options, NULL)) != -1) {
+    while ((opt = getopt_long(argc, argv, "hvlUTsct:p:m:", long_options,
+                              NULL)) != -1) {
         switch (opt) {
         case 'h':
             args->get_help = true;
@@ -27,6 +35,27 @@ void read_io_args(struct io_args *args, int argc, char **argv) {
             break;
         case 'l':
             args->get_license = true;
+            break;
+        case 'U':
+            args->protocol = udp;
+            break;
+        case 'T':
+            args->protocol = tcp;
+            break;
+        case 's':
+            args->mode = server;
+            break;
+        case 'c':
+            args->mode = client;
+            break;
+        case 't':
+            args->target = strtoi(optarg, NULL);
+            break;
+        case 'p':
+            args->port = strtoi(optarg, NULL);
+            break;
+        case 'm':
+            args->msg = optarg;
             break;
         default:
             snprintf_s(bad, BUFSIZ, "%s", argv[optind - 1]);

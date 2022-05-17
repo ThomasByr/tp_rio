@@ -1,5 +1,15 @@
 #include "lib.h"
 
+enum protocol {
+    tcp,
+    udp,
+};
+
+enum mode {
+    server,
+    client,
+};
+
 /**
  * @brief struct to hold command line arguments.
  *
@@ -8,6 +18,13 @@ struct io_args {
     bool get_help;    // -h, --help
     bool get_version; // -v, --version
     bool get_license; // -l, --license
+
+    enum protocol protocol; // -U, --udp / -T, --tcp
+    enum mode mode;         // -s, --server / -c, --client
+
+    int target;      // -t, --target
+    int port;        // -p, --port
+    const char *msg; // -m, --message
 };
 
 /**
