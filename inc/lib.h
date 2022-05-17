@@ -44,16 +44,16 @@
 #define __VERSION_MINOR__ 1
 #define __VERSION_PATCH__ 0
 
-#define CHK(op)                                                                \
-    do {                                                                       \
-        if ((op) == -1)                                                        \
-            panic(1, #op);                                                     \
+#define CHK(op)            \
+    do {                   \
+        if ((op) == -1)    \
+            panic(1, #op); \
     } while (0)
 
-#define T_CHK(op)                                                              \
-    do {                                                                       \
-        if ((errno = (op)) > 0)                                                \
-            panic(1, #op);                                                     \
+#define T_CHK(op)               \
+    do {                        \
+        if ((errno = (op)) > 0) \
+            panic(1, #op);      \
     } while (0)
 
 #define min(a, b) ((a) < (b) ? (a) : (b))
@@ -78,8 +78,8 @@
 #define BG_CYN2 "\x1b[46m"
 #define BG_WHT "\x1b[47m"
 
-#define BUFLEN 1024
-#define IP_RECEIVER "127.0.0.1"
+#define BUFLEN 1 << 10
+#define IP_RECEIVER "130.0.0.1"
 
 /**
  * @brief panic with a message.
