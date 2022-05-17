@@ -1,9 +1,8 @@
-#include "../inc/lib.h"
-#define BUFFLEN 1024
+#include "receiver-udp.h"
 
 int receiver_udp(int port) {
-    int sockfd;        // descripteur de socket
-    char buf[BUFFLEN]; // espace necessaire pour stocker le message recu
+    int sockfd;       // descripteur de socket
+    char buf[BUFSIZ]; // espace necessaire pour stocker le message recu
 
     // taille d'une structure sockaddr_in utile pour la fonction recvfrom
     socklen_t fromlen = sizeof(struct sockaddr_in);
@@ -34,7 +33,7 @@ int receiver_udp(int port) {
     }
 
     // reception de la chaine de caracteres
-    if (recvfrom(sockfd, buf, BUFFLEN, 0, &my_addr.sin_addr, &fromlen) == -1) {
+    if (recvfrom(sockfd, buf, BUFSIZ, 0, &my_addr.sin_addr, &fromlen) == -1) {
         perror("erreur de reception -> ");
         exit(-3);
     }

@@ -1,3 +1,4 @@
+#pragma once
 #include "lib.h"
 
 enum protocol {
