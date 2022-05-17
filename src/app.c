@@ -9,6 +9,7 @@ int exe(const struct io_args *args) {
             return receiver_udp(args->port);
             break;
         case tcp:
+            return receiver_tcp(args->port);
             break;
         }
         break;
@@ -18,6 +19,7 @@ int exe(const struct io_args *args) {
             return sender_udp(args->target, args->port, args->msg);
             break;
         case tcp:
+            return sender_tcp(args->target, args->port, args->msg);
             break;
         }
         break;
