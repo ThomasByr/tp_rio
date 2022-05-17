@@ -39,7 +39,7 @@
 
 #include "lib.h"
 
-#include "io.h"
+#include "app.h"
 
 int main(int argc, char *argv[]) {
     struct io_args args;
@@ -48,5 +48,5 @@ int main(int argc, char *argv[]) {
     read_io_args(&args, argc, argv);
     check_io_args(&args);
 
-    return EXIT_SUCCESS;
+    return exe(&args);
 }
