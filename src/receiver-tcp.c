@@ -1,6 +1,6 @@
 #include "receiver-tcp.h"
 
-int receiver_tcp(int port) {
+int receiver_tcp(char *target, int port) {
     int sockfd;             // socket file descriptor
     int sockfd_client;      // socket file descriptor
     char buf[BUFLEN] = {0}; // buffer
@@ -21,7 +21,7 @@ int receiver_tcp(int port) {
     my_addr.sin_port = htons(port);
 
     // IPv4 address of the receiver
-    inet_aton(IP_RECEIVER, &(my_addr.sin_addr));
+    inet_aton(target, &(my_addr.sin_addr));
 
     // association of the socket and the address structure
     if (bind(sockfd, (struct sockaddr *)&my_addr, sizeof(my_addr)) != 0) {

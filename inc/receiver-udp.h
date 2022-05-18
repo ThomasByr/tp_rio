@@ -2,4 +2,4 @@
 
 #include "lib.h"
 
-int receiver_udp(int port);
+int receiver_udp(char *target, int port);

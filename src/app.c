@@ -6,10 +6,10 @@ int exe(const struct io_args *args) {
     case server:
         switch (args->protocol) {
         case udp:
-            return receiver_udp(args->port);
+            return receiver_udp(args->target, args->port);
             break;
         case tcp:
-            return receiver_tcp(args->port);
+            return receiver_tcp(args->target, args->port);
             break;
         }
         break;

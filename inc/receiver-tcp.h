@@ -2,4 +2,4 @@
 
 #include "lib.h"
 
-int receiver_tcp(int port);
+int receiver_tcp(char *target, int port);
