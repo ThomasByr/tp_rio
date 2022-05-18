@@ -16,15 +16,16 @@ void read_io_args(struct io_args *args, int argc, char **argv) {
         {"license", no_argument, NULL, 'l'},
         {"udp", no_argument, NULL, 'U'},
         {"tcp", no_argument, NULL, 'T'},
-        {"server", no_argument, NULL, 'S'},
-        {"client", no_argument, NULL, 'C'},
+        {"select", no_argument, NULL, 'S'},
+        {"server", no_argument, NULL, 's'},
+        {"client", no_argument, NULL, 'c'},
         {"target", required_argument, NULL, 't'},
         {"port", required_argument, NULL, 'p'},
         {"message", required_argument, NULL, 'm'},
         {NULL, 0, NULL, 0},
     };
 
-    while ((opt = getopt_long(argc, argv, "hvlUTSCt:p:m:", long_options,
+    while ((opt = getopt_long(argc, argv, "hvlUTSsct:p:m:", long_options,
                               NULL)) != -1) {
         switch (opt) {
         case 'h':
@@ -41,6 +42,9 @@ void read_io_args(struct io_args *args, int argc, char **argv) {
             break;
         case 'T':
             args->protocol = tcp;
+            break;
+        case 'S':
+            args->protocol = slc;
             break;
         case 's':
             args->mode = server;
