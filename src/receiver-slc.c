@@ -79,7 +79,7 @@ int receiver_slc(char *target, int port) {
     }
 
     // While message is different from ":q"
-    while (strcmp(buf, ":q\n") != 0) {
+    while (strcmp(buf, ":q") != 0) {
         // Reinitialize msg
         memset(buf, 0, BUFLEN);
 
@@ -105,7 +105,7 @@ int receiver_slc(char *target, int port) {
                 if (recv(sockfd_client, buf, BUFLEN, 0) == -1) {
                     panic(1, "recv failure");
                 }
-                info(1, "Received: %s", buf);
+                info(1, "Received: %s\n", buf);
             }
             break;
         }
