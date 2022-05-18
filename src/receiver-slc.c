@@ -45,7 +45,7 @@ int receiver_slc(char *target, int port) {
         panic(1, "accept failure");
     }
 
-    debug(1, "Received connection from %s\n", inet_ntoa(client.sin_addr));
+    info(1, "Received connection from %s\n", inet_ntoa(client.sin_addr));
 
     // Monitor the socket for readability
     FD_ZERO(&readfds);
@@ -94,7 +94,7 @@ int receiver_slc(char *target, int port) {
             panic(1, "select failure");
             break;
         case 0:
-            info(1, "Timeout\n");
+            debug(1, "Timeout\n");
             // Monitor the socket for readability
             FD_ZERO(&readfds);
             FD_SET(sockfd_client, &readfds);
@@ -105,11 +105,14 @@ int receiver_slc(char *target, int port) {
                 if (recv(sockfd_client, buf, BUFLEN, 0) == -1) {
                     panic(1, "recv failure");
                 }
+                trim(buf);
                 info(1, "Received: %s\n", buf);
             }
             break;
         }
     }
+
+    info(1, "Client %s disconnected\n", inet_ntoa(client.sin_addr));
 
     // closing socket
     CHK(close(sockfd));

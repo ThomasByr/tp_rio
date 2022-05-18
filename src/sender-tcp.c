@@ -23,7 +23,7 @@ int sender_tcp(char *target, int port, char *msg) {
         panic(1, "connect failure");
     }
 
-    debug(1, "Connected to %s:%d\n", target, port);
+    info(1, "Connected to %s:%d\n", target, port);
 
     // Authentication
     if (send(sockfd, msg, strlen(msg), 0) == -1) {
