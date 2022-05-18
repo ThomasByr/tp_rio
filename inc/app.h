@@ -1,6 +1,7 @@
 #pragma once
 #include "io.h"
 
+#include "receiver-slc.h"
 #include "receiver-tcp.h"
 #include "receiver-udp.h"
 #include "sender-tcp.h"

@@ -16,14 +16,14 @@ int sender_tcp(char *target, int port, const char *msg) {
     // dest port
     dest.sin_port = htons(port);
 
-    debug(1, "Connecting to %s:%d", target, port);
+    debug(1, "Connecting to %s:%d\n", target, port);
 
     // connection
     if (connect(sockfd, (struct sockaddr *)&dest, sizeof(dest)) == -1) {
         panic(1, "connect failure");
     }
 
-    debug(1, "Connected to %s:%d", target, port);
+    debug(1, "Connected to %s:%d\n", target, port);
 
     // send msg
     if (send(sockfd, msg, strlen(msg), 0) == -1) {

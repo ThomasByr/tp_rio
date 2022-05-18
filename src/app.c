@@ -12,7 +12,7 @@ int exe(const struct io_args *args) {
             return receiver_tcp(args->target, args->port);
             break;
         case slc:
-            return 0;
+            return receiver_slc(args->target, args->port);
             break;
         }
         break;
@@ -26,7 +26,6 @@ int exe(const struct io_args *args) {
             return sender_tcp(args->target, args->port, args->msg);
             break;
         case slc:
-            return 0;
             break;
         }
         break;
