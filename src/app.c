@@ -11,6 +11,9 @@ int exe(const struct io_args *args) {
         case tcp:
             return receiver_tcp(args->target, args->port);
             break;
+        case slc:
+            return 0;
+            break;
         }
         break;
 
@@ -21,6 +24,9 @@ int exe(const struct io_args *args) {
             break;
         case tcp:
             return sender_tcp(args->target, args->port, args->msg);
+            break;
+        case slc:
+            return 0;
             break;
         }
         break;

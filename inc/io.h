@@ -3,8 +3,9 @@
 #include "lib.h"
 
 enum protocol {
-    tcp,
-    udp,
+    tcp, // tcp
+    udp, // udp
+    slc, // select
 };
 
 enum mode {
