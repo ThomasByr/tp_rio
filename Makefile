@@ -17,6 +17,8 @@ INCLUDES    := $(wildcard $(INCLUDE_PATH)/*.h)
 OBJECTS     := $(SOURCES:$(SRCDIR)/%.$(FILEXT)=$(OBJDIR)/%.o)
 
 PATH_TO_EXE  = $(BINDIR)/$(TARGET)
+SERVER       = ./$(PATH_TO_EXE) -S -s -t 130.0.0.1 -p 36000
+CLIENT       = ./$(PATH_TO_EXE) -T -c -t 130.0.0.1 -p 36000 -m thomas
 
 all : debug
 
@@ -40,6 +42,12 @@ run-release: clean release
 
 run-debug: clean debug
 	valgrind --leak-check=full --show-leak-kinds=all --vgdb=full -s ./$(PATH_TO_EXE)
+
+server : debug
+	$(SERVER)
+
+client : debug
+	$(CLIENT)
 
 $(PATH_TO_EXE): $(OBJECTS)
 	mkdir -p $(BINDIR)
