@@ -51,8 +51,8 @@ int receiver_slc(char *target, int port) {
     FD_ZERO(&readfds);
     FD_SET(sockfd_client, &readfds);
 
-    // Wait five seconds for a message
-    tv.tv_sec = 5;
+    // Wait TIMEOUT seconds for a message
+    tv.tv_sec = TIMEOUT;
     tv.tv_usec = 0;
     rtval = select(sockfd_client + 1, &readfds, NULL, NULL, &tv);
 
@@ -63,15 +63,52 @@ int receiver_slc(char *target, int port) {
         break;
     case 0:
         info(1, "Timeout\n");
+        // Monitor the socket for readability
+        FD_ZERO(&readfds);
+        FD_SET(sockfd_client, &readfds);
+
         break;
     default:
         if (FD_ISSET(sockfd_client, &readfds)) {
             if (recv(sockfd_client, buf, BUFLEN, 0) == -1) {
                 panic(1, "recv failure");
             }
-            info(1, "Received: %s\n", buf);
+            info(1, "%s connected\n", buf);
         }
         break;
+    }
+
+    // While message is different from ":q"
+    while (strcmp(buf, ":q\n") != 0) {
+        // Reinitialize msg
+        memset(buf, 0, BUFLEN);
+
+        // Wait TIMEOUT seconds for a message
+        tv.tv_sec = TIMEOUT;
+        tv.tv_usec = 0;
+        rtval = select(sockfd_client + 1, &readfds, NULL, NULL, &tv);
+
+        // reception of the message
+        switch (rtval) {
+        case -1:
+            panic(1, "select failure");
+            break;
+        case 0:
+            info(1, "Timeout\n");
+            // Monitor the socket for readability
+            FD_ZERO(&readfds);
+            FD_SET(sockfd_client, &readfds);
+
+            break;
+        default:
+            if (FD_ISSET(sockfd_client, &readfds)) {
+                if (recv(sockfd_client, buf, BUFLEN, 0) == -1) {
+                    panic(1, "recv failure");
+                }
+                info(1, "Received: %s", buf);
+            }
+            break;
+        }
     }
 
     // closing socket

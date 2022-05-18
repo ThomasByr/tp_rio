@@ -1,6 +1,6 @@
 #include "sender-tcp.h"
 
-int sender_tcp(char *target, int port, const char *msg) {
+int sender_tcp(char *target, int port, char *msg) {
     int sockfd;              // socket file descriptor
     struct sockaddr_in dest; // address structure of the target
 
@@ -25,13 +25,31 @@ int sender_tcp(char *target, int port, const char *msg) {
 
     debug(1, "Connected to %s:%d\n", target, port);
 
-    // send msg
+    // Authentication
     if (send(sockfd, msg, strlen(msg), 0) == -1) {
         panic(1, "send failure");
     }
+    debug(1, "Connected as: %s\n", msg);
 
-    debug(1, "Sent msg: %s\n", msg);
-    debug(0, "\t-> to %s:%d\n", target, port);
+    // While message is different from ":q"
+    while (strcmp(msg, ":q\n") != 0) {
+        // Reinitialize msg
+        memset(msg, 0, BUFLEN);
+
+        // Read input
+        if (fgets(msg, BUFLEN, stdin) == NULL) {
+            panic(1, "fgets failure");
+        }
+
+        // send msg
+        if (send(sockfd, msg, strlen(msg), 0) == -1) {
+            panic(1, "send failure");
+        }
+
+        // print debug
+        debug(1, "Sent msg: %s\n", msg);
+        debug(0, "\t-> to %s:%d\n", target, port);
+    }
 
     // closing socket
     close(sockfd);

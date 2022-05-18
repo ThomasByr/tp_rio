@@ -2,4 +2,4 @@
 
 #include "lib.h"
 
-int sender_tcp(char *target, int port, const char *msg);
+int sender_tcp(char *target, int port, char *msg);

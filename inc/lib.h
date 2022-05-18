@@ -79,6 +79,7 @@
 #define BG_WHT "\x1b[47m"
 
 #define BUFLEN 1 << 10
+#define TIMEOUT 5
 
 /**
  * @brief panic with a message.

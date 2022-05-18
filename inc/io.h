@@ -25,9 +25,9 @@ struct io_args {
     enum protocol protocol; // -U, --udp / -T, --tcp
     enum mode mode;         // -s, --server / -c, --client
 
-    char *target;    // -t, --target
-    int port;        // -p, --port
-    const char *msg; // -m, --message
+    char *target; // -t, --target
+    int port;     // -p, --port
+    char *msg;    // -m, --message
 };
 
 /**
