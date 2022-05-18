@@ -85,3 +85,22 @@ void snprintf_s(char *restrict str, size_t size, const char *restrict fmt,
         panic(1, "format string too long");
     }
 }
+
+void trim(char *str) {
+    char *end;
+
+    while (isspace(*str)) {
+        str++;
+    }
+
+    if (*str == 0) {
+        return;
+    }
+
+    end = str + strlen(str) - 1;
+    while (end > str && isspace(*end)) {
+        end--;
+    }
+
+    *(end + 1) = 0;
+}

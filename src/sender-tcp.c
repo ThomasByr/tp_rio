@@ -32,7 +32,7 @@ int sender_tcp(char *target, int port, char *msg) {
     debug(1, "Connected as: %s\n", msg);
 
     // While message is different from ":q"
-    while (strcmp(msg, ":q\n") != 0) {
+    while (strcmp(msg, ":q") != 0) {
         // Reinitialize msg
         memset(msg, 0, BUFLEN);
 
@@ -40,6 +40,7 @@ int sender_tcp(char *target, int port, char *msg) {
         if (fgets(msg, BUFLEN, stdin) == NULL) {
             panic(1, "fgets failure");
         }
+        trim(msg);
 
         // send msg
         if (send(sockfd, msg, strlen(msg), 0) == -1) {

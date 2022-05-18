@@ -2,6 +2,7 @@
 
 #include <arpa/inet.h>
 #include <assert.h>
+#include <ctype.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <fnmatch.h>
@@ -123,3 +124,10 @@ void info(int first, const char *restrict fmt, ...);
  * @param fmt formated message to print
  */
 void snprintf_s(char *restrict str, size_t size, const char *restrict fmt, ...);
+
+/**
+ * @brief suppress leading and trailing whitespaces, tabs and newlines.
+ *
+ * @param str
+ */
+void trim(char *str);
